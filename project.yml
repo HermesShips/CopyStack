@@ -1,0 +1,51 @@
+name: CopyStack
+options:
+  bundleIdPrefix: com.anubis
+  deploymentTarget:
+    macOS: "13.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGN_STYLE: Manual
+  configs:
+    # Xcode injects get-task-allow when signing locally.
+    Release:
+      CODE_SIGN_INJECT_BASE_ENTITLEMENTS: NO
+
+targets:
+  CopyStack:
+    type: application
+    platform: macOS
+    sources: [CopyStack, Core]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.anubis.copystack
+        PRODUCT_NAME: CopyStack
+        INFOPLIST_FILE: CopyStack/Info.plist
+        CODE_SIGN_ENTITLEMENTS: CopyStack/CopyStack.entitlements
+
+  CopyStackTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources: [Core, CopyStackTests]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.anubis.copystack.tests
+        GENERATE_INFOPLIST_FILE: YES
+
+schemes:
+  CopyStack:
+    build:
+      targets:
+        CopyStack: all
+        CopyStackTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets: [CopyStackTests]
