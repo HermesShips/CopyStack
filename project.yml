@@ -1,6 +1,6 @@
 name: CopyStack
 options:
-  bundleIdPrefix: com.anubis
+  bundleIdPrefix: io.github.hermesships
   deploymentTarget:
     macOS: "13.0"
   createIntermediateGroups: true
@@ -24,7 +24,7 @@ targets:
     sources: [CopyStack, Core]
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.anubis.copystack
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.hermesships.copystack
         PRODUCT_NAME: CopyStack
         INFOPLIST_FILE: CopyStack/Info.plist
         CODE_SIGN_ENTITLEMENTS: CopyStack/CopyStack.entitlements
@@ -35,7 +35,7 @@ targets:
     sources: [Core, CopyStackTests]
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.anubis.copystack.tests
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.hermesships.copystack.tests
         GENERATE_INFOPLIST_FILE: YES
 
 schemes:
