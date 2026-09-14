@@ -44,3 +44,12 @@ private func temporaryFile() throws -> URL {
     #expect(json?["version"] as? Int == 1)
     #expect((json?["clips"] as? [[String: Any]])?.first?["text"] as? String == "ssh anubis@box")
 }
+
+@Test func onlyTheOwnerCanReadTheSavedFile() throws {
+    let url = try temporaryFile()
+    ClipStore(url: url).save([Clip(text: "secret")])
+
+    let permissions = try FileManager.default.attributesOfItem(atPath: url.path)[.posixPermissions] as? Int
+
+    #expect(permissions == 0o600)
+}
