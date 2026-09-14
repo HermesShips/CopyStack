@@ -16,3 +16,4 @@ jobs:
       - run: brew install xcodegen
       - run: xcodegen generate
       - run: xcodebuild -project CopyStack.xcodeproj -scheme CopyStack -destination 'platform=macOS' test
+      - run: ./install.sh --build-only
