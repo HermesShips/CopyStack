@@ -2,7 +2,7 @@ name: CopyStack
 options:
   bundleIdPrefix: io.github.hermesships
   deploymentTarget:
-    macOS: "13.0"
+    macOS: "14.5"
   createIntermediateGroups: true
 
 settings:
