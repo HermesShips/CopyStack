@@ -29,6 +29,8 @@ struct ClipStore {
     func save(_ clips: [Clip]) {
         guard let data = try? JSONEncoder().encode(StoredClips(version: Self.version, clips: clips)) else { return }
         try? data.write(to: url, options: .atomic)
+        // An atomic write makes a new file each time, so the permissions must be set again.
+        try? FileManager.default.setAttributes([.posixPermissions: 0o600], ofItemAtPath: url.path)
     }
 }
 
